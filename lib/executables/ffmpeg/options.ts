@@ -308,7 +308,7 @@ export const filter = <TReturnValue>(index: number | null, ...filters: Chainable
     }
   }
 
-export const extract = (index: number | null, type: TrackType): Chainable<ExecutableOption> =>
+export const extract = (index: number | null = null, type: TrackType): Chainable<ExecutableOption> =>
   async () => {
     return {
       argument: [
