@@ -123,7 +123,7 @@ export const execute = async (command: Command) => {
           return
         }
         // todo log errors
-        console.log(error)
+        console.log(new Error().stack)
         // fs.rmSync(options.output())
         throw error
       }
