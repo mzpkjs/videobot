@@ -124,7 +124,7 @@ export const execute = async (command: Command) => {
         }
         // todo log errors
         console.log(error)
-        fs.rmSync(options.output())
+        // fs.rmSync(options.output())
         throw error
       }
     }
