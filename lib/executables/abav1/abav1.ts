@@ -13,7 +13,6 @@ const abav1 = async (input: string, crf: number, h265params: string): Promise<{ 
       `--input "${input}"`
     ]
   ])
-  console.log(output)
   const match = output.match(/crf (\d+(\.\d+)?) VMAF (\d+(\.\d+)?)/)
   if (match) {
     const crf = Number(match[1])

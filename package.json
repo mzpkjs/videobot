@@ -17,6 +17,8 @@
   "license": "MIT",
   "keywords": [],
   "dependencies": {
+    "archiver": "^7.0.1",
+    "archiver-zip-encrypted": "^2.0.0",
     "ffmpeg-static": "^5.2.0",
     "ffprobe-static": "^3.1.0",
     "mediainfo-static": "^1.0.5",
@@ -25,6 +27,7 @@
     "ololog": "^1.1.175"
   },
   "devDependencies": {
+    "@types/archiver": "^6.0.2",
     "@types/mock-fs": "^4.13.4",
     "@types/node": "^22.4.0",
     "ts-patch": "^3.2.1",

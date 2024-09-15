@@ -3,12 +3,12 @@ import * as path from "path"
 import { zip } from "#/utilities/array"
 import { exit, info } from "#/utilities/process"
 // import * as ui from "#/ui"
-import { Input, Option, Options, temp } from "./options"
+import { Input, Option, Options } from "./options"
 import { collect, serialize } from "./flags"
 import { Descriptor, DescriptorType } from "./descriptors"
 import { Mutator } from "#/core/mutators"
 import { compose } from "#/utilities/function"
-import { double, proxy, stub } from "#/core/mock"
+// import { double, proxy, stub } from "#/core/mock"
 import { savestate } from "#/core/executables"
 
 
@@ -79,16 +79,16 @@ export const execute = async (command: Command) => {
       }
     })
   const options = Options.fromArray(Option.toArray(flags))
-  stub.inject()
-  await command.execute(
-    proxy<Options>(
-      options,
-      "output",
-      () => temp.max = temp.max + 1
-    ),
-    { fs: double(fs), path }
-  )
-  stub.restore()
+  // stub.inject()
+  // await command.execute(
+  //   proxy<Options>(
+  //     options,
+  //     "output",
+  //     () => temp.max = temp.max + 1
+  //   ),
+  //   { fs: double(fs), path }
+  // )
+  // stub.restore()
   if (filepaths.length === 0) {
     await command.execute(options, tools)
     return
@@ -122,6 +122,8 @@ export const execute = async (command: Command) => {
           await executeThunk(retries - 1)
           return
         }
+        // todo log errors
+        console.log(error)
         fs.rmSync(options.output())
         throw error
       }

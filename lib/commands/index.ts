@@ -1,3 +1,4 @@
+export { default as archive } from "./archive"
 export { default as clean } from "./clean"
 export { default as encode } from "./encode"
 export { default as extractsubtitles } from "./extractsubtitles"

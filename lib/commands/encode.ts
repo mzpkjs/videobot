@@ -1,5 +1,5 @@
 import { Command, description, name, Options, options, Output, TrackType, VideoCodec } from "#/core"
-import { configuration, input, output, quality, retry, verbose } from "#/options"
+import { configuration, input, output, retry, verbose } from "#/options"
 import ffmpeg, { codec, copy, encode, Encoder, ENCODER_PRESETS, EncoderPreset } from "#/executables/ffmpeg"
 
 
@@ -11,7 +11,6 @@ import ffmpeg, { codec, copy, encode, Encoder, ENCODER_PRESETS, EncoderPreset } 
     retry(),
     input(),
     output(),
-    quality(),
     configuration()
   )
 )
@@ -32,14 +31,13 @@ class Encode implements Command {
     // // const crf = QUALITY_LEVEL[quality()]
     // const h265 = H265_PRESETS[preset()]
     // // const best = await abav1(input(), crf, h265.h265params)
-    const { encoder, encoder_preset, crf } =
-      configuration() as { encoder: Encoder, encoder_preset: EncoderPreset, crf: number }
-    // const [ encoder = Encoder.H264, encoder_preset = EncoderPreset.STANDARD ] = preset() as [ Encoder, EncoderPreset ]
-    const encoding = ENCODER_PRESETS[encoder][encoder_preset]
+    const { encoder = "H264", preset = "STANDARD", crf = 21 } = configuration()
+    const encoding =
+      ENCODER_PRESETS[encoder.toUpperCase() as Encoder][preset.toUpperCase() as EncoderPreset]
     await ffmpeg(
       input(),
       output(),
-      codec(null, TrackType.VIDEO, VideoCodec[encoder]),
+      codec(null, TrackType.VIDEO, VideoCodec[encoder.toUpperCase() as Encoder]),
       encode(encoding, crf),
       copy(null, TrackType.AUDIO),
       copy(null, TrackType.SUBTITLES)

@@ -5,7 +5,10 @@ export default Option<Record<any, any>>({
   name: "configuration",
   alias: "c",
   description: "",
-  required: true,
+  required: false,
+  defaults: () => {
+    return {}
+  },
   serialize: (values: string[]) => {
     return Object.fromEntries(
       values
@@ -17,7 +20,7 @@ export default Option<Record<any, any>>({
           if (value === null) {
             return [ key, true ]
           }
-          return [ key, String(value).toUpperCase() ]
+          return [ key, String(value) ]
         })
     )
   }

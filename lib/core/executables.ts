@@ -58,7 +58,7 @@ export type Chainable<TReturnValue> =
   (target: string, other?: Record<string, any>) => Promise<TReturnValue>
 
 type ExecuteArgs =
-  string | number | undefined | false | ExecuteArgs[];
+  string | number | undefined | false | ExecuteArgs[]
 
 export const spawn = async (binary: string, args: ExecuteArgs[]): Promise<string> => {
   const executableNormalized = getStaticExecutable(binary)

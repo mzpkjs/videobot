@@ -291,6 +291,7 @@ export const encode = (encode: EncodeH264 | EncodeH265, crf: number): Chainable<
         [ `-tune`, encode.tune ],
         [ `-crf`, crf ],
         EncodeH264.isEncodeH264(encode) && [ `-x264-params`, `"${encode.h264params}"` ],
+        EncodeH264.isEncodeH264(encode) && [ `-pix_fmt`, `yuv420p` ],
         EncodeH265.isEncodeH265(encode) && [ `-x265-params`, `"${encode.h265params}"` ]
       ]
     }
