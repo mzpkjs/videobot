@@ -8,6 +8,7 @@ tsconfig.tsbuildinfo
 **/*.map
 **/*.d.ts
 **/*.js
+!ambient.d.ts
 
 ## Coverage directory
 coverage/
