@@ -438,7 +438,7 @@ export const loudnorm = (): Chainable<FilterArgument> =>
   async (input, { index } = {}) => {
     const analyze = (): Chainable<FilterArgument> => {
       return async () => {
-        return `apad,atrim=0:3,loudnorm=print_format=json`
+        return `loudnorm=print_format=json`
       }
     }
     const text = await ffmpeg<string>(
